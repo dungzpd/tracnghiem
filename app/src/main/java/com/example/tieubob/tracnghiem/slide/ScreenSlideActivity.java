@@ -38,7 +38,7 @@ public class ScreenSlideActivity extends FragmentActivity {
     private PagerAdapter mPagerAdapter;
     TextView tvKiemtra;
 
-    DBHelper questionController;
+    QuestionController questionController;
     ArrayList<Question> questions;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +51,7 @@ public class ScreenSlideActivity extends FragmentActivity {
         mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
         mPager.setAdapter(mPagerAdapter);
         mPager.setPageTransformer(true, new DepthPageTransformer());
-        questionController = new DBHelper(this);
+        questionController = new QuestionController(this);
         questions = new ArrayList<>();
         Log.w("mylog","test1");
         questions = questionController.getQuestion("1", "gdcd");

@@ -60,47 +60,10 @@ public class MainActivity extends AppCompatActivity
         manager.beginTransaction().replace(R.id.content_main, homeFragment, homeFragment.getTag()).commit();
         Log.w("MainActivity","test1");
         DBHelper mDBHelper = new DBHelper(this);
-//        try {
-////            mDBHelper.createDataBase();
-////        } catch (IOException e) {
-////            e.printStackTrace();
-////        }
-        //Check exists database
-        File database = getApplicationContext().getDatabasePath(DBHelper.DB_NAME);
-        Log.w("MainActivity",DBHelper.DB_NAME);
-        if(false == database.exists()) {
-
-            mDBHelper.getReadableDatabase();
-            //Copy db
-            if(copyDatabase(this)) {
-                Toast.makeText(this, "Copy database succes", Toast.LENGTH_SHORT).show();
-                Log.w("MainActivity","Copy database succes");
-            } else {
-                Toast.makeText(this, "Copy data error", Toast.LENGTH_SHORT).show();
-                Log.w("MainActivity","Copy data error");
-                return;
-            }
-        }
-
-    }
-    private boolean copyDatabase(Context context) {
         try {
-
-            InputStream inputStream = context.getAssets().open(DBHelper.DB_NAME);
-            String outFileName = DBHelper.DB_PATH + DBHelper.DB_NAME;
-            OutputStream outputStream = new FileOutputStream(outFileName);
-            byte[]buff = new byte[1024];
-            int length = 0;
-            while ((length = inputStream.read(buff)) > 0) {
-                outputStream.write(buff, 0, length);
-            }
-            outputStream.flush();
-            outputStream.close();
-            Log.w("MainActivity","DB copied");
-            return true;
-        }catch (Exception e) {
+            mDBHelper.createDataBase();
+        } catch (IOException e) {
             e.printStackTrace();
-            return false;
         }
     }
     @Override

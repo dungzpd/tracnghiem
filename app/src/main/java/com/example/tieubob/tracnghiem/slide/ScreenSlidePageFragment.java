@@ -52,7 +52,7 @@ public class ScreenSlidePageFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        questions = new ArrayList<Question>();
+        questions = new ArrayList<>();
         ScreenSlideActivity screenSlideActivity = (ScreenSlideActivity) getActivity();
         questions = screenSlideActivity.getData();
         m_nPage = getArguments().getInt(ARG_PAGE);

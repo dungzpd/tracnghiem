@@ -18,28 +18,22 @@ public class QuestionController {
 
     //Lấy danh sách câu hỏi
     public ArrayList<Question> getQuestion(String num_exam, String subject){
-        ArrayList<Question> lsData= new ArrayList<Question>();
-//        openDatabase();
-//        Toast.makeText(cont, "tesst" , Toast.LENGTH_SHORT).show();
-        Log.w("mylog","truy van");
+        ArrayList<Question> lsData= new ArrayList<>();
         SQLiteDatabase db = dbHelper.getWritableDatabase();
-        Log.w("mylog","truy van 1");
         Cursor cursor= db.rawQuery("SELECT * FROM tracnghiem ",null);
-        Log.w("mylog","getquestion");
-        //        cursor.moveToFirst();
-//        while (!cursor.isAfterLast()) {
-//            Question item = new Question(cursor.getInt(0), cursor.getString(1),
-//                    cursor.getString(2),cursor.getString(3),
-//                    cursor.getString(4),cursor.getString(5),
-//                    cursor.getString(6),cursor.getString(7),
-//                    cursor.getString(8),cursor.getString(9),
-//                    "");
-//
-//            lsData.add(item);
-//            cursor.moveToNext();
-//        }
-//        cursor.close();
-        //closeDatabase();
+                cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            Question item = new Question(cursor.getInt(0), cursor.getString(1),
+                    cursor.getString(2),cursor.getString(3),
+                    cursor.getString(4),cursor.getString(5),
+                    cursor.getString(6),cursor.getString(7),
+                    cursor.getString(8),cursor.getString(9),
+                    "");
+
+            lsData.add(item);
+            cursor.moveToNext();
+        }
+        cursor.close();
         return lsData;
     }
     //Lấy danh sách câu hỏi theo câu hỏi...
